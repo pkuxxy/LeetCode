@@ -1,0 +1,74 @@
+#include<iostream>
+#include<vector>
+#include<queue>
+#include<string>
+#include<string.h>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+class Solution {
+public:
+	void setZeroes(vector<vector<int> > &matrix) {
+		int len1 = matrix.size();
+		if(!len1)
+			return;
+		int len2 = matrix[0].size();
+		bool rowTag = false;
+		bool colTag = false;
+		for(int i = 0; i < len1; i++)
+		{
+			if(matrix[i][0] == 0)
+			{
+				colTag = true;
+				break;
+			}
+		}
+		for(int i = 0; i < len2; i++)
+		{
+			if(matrix[0][i] == 0)
+			{
+				rowTag = true;
+				break;
+			}
+		}
+		for(int i = 1; i < len1; i++)
+		{
+			for(int j = 1; j < len2; j++)
+			{
+				if(matrix[i][j] == 0)
+				{
+					matrix[i][0] = 0;
+					matrix[0][j] = 0;
+				}
+			}
+		}
+		for(int i = 1; i < len1; i++)
+		{
+			for(int j = 1; j < len2; j++)
+			{
+				if(matrix[i][0] == 0)
+				{
+					matrix[i][j] = 0;
+				}
+				if(matrix[0][j] == 0)
+				{
+					matrix[i][j] = 0;
+				}
+			}
+		}
+		if(rowTag)
+		{
+			for(int i = 0; i < len2; i++)
+			{
+				matrix[0][i] = 0;
+			}
+		}
+		if(colTag)
+		{
+			for(int i = 0; i < len1; i++)
+			{
+				matrix[i][0] = 0;
+			}
+		}
+	}
+};

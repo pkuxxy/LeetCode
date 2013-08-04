@@ -1,0 +1,40 @@
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    void inorderTraverse(TreeNode *root) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        if(!root)
+            return;
+        stack<TreeNode*> st;
+        st.push(root);
+        TreeNode* pre = NULL;
+        while(!st.empty())
+        {
+            TreeNode* cur = st.top();
+            if(cur->left == pre)
+            {
+                st.pop();
+                cout<<cur->val<<endl;
+                if(cur->right)
+                    st.push(cur->right);
+            }
+            else
+            {
+                if(cur->left)
+                {
+                    st.push(cur->left);
+                }
+            }
+            pre = cur;
+        }
+    }
+};
